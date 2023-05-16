@@ -16,13 +16,27 @@
   
 ## 라이브러리  
 
+```bash
+#upload
+$ pip freeze > requirements.txt
+  
+#download
+$ pip install -r requirements.txt
+```  
+  
 ## 개발환경
 
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
 
 ## reference
-  1
 
+## 음성합성
+  1.
+  2.
+  
+## 문장생성
+  1.
+  2. 
 
 
 
