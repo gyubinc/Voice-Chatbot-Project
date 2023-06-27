@@ -54,8 +54,8 @@ if __name__ == "__main__":
     text_path = '../../data/text_file'
     file_path = '../../data/alignment.txt'
     
-    aud_names = ['aud_1', 'aud_2', 'aud_3', 'aud_5', 'aud_6', 'aud_13']
-    text_names = ['wang-01.xlsx', 'wang-02.xlsx', 'wang-03.xlsx', 'wang-05.xlsx', 'wang-06.xlsx', 'wang-13.xlsx']
+    aud_names = ['aud_1', 'aud_2', 'aud_3', 'aud_5', 'aud_6', 'aud_13', 'aud_14', 'aud_43', 'aud_44']
+    text_names = ['wang-01.xlsx', 'wang-02.xlsx', 'wang-03.xlsx', 'wang-05.xlsx', 'wang-06.xlsx', 'wang-13.xlsx', 'wang-14.xlsx', 'wang-43.xlsx', 'wang-44.xlsx']
     
     aud_list = []
     text_list = []
