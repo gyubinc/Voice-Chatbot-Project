@@ -145,7 +145,7 @@ def parse_args():
     )
     parser.add_argument("--weight_decay", type=float, default=0.0, help="Weight decay to use.")
     parser.add_argument(
-        "--num_train_epochs", type=int, default=5, help="Total number of training epochs to perform."
+        "--num_train_epochs", type=int, default=12, help="Total number of training epochs to perform."
     )
     parser.add_argument(
         "--max_train_steps",
@@ -477,23 +477,21 @@ def main():
 
     # Freezing Model
     for parameter in model.parameters():
+        parameter.requires_grad = False
+
+    for i, m in enumerate(model.transformer.h):
+        # Only un-freeze the last n transformer blocks
+        if i >= 20:
+            for parameter in m.parameters():
+                parameter.requires_grad = True
+
+    for parameter in model.transformer.ln_f.parameters():
         parameter.requires_grad = True
+
+    for parameter in model.lm_head.parameters():
+        parameter.requires_grad = True
+
     
-
-    '''
-        for i, m in enumerate(model.transformer.h):
-            # Only un-freeze the last n transformer blocks
-            if i >= 12:
-                for parameter in m.parameters():
-                    parameter.requires_grad = True
-
-        for parameter in model.transformer.ln_f.parameters():
-            parameter.requires_grad = True
-
-        for parameter in model.lm_head.parameters():
-            parameter.requires_grad = True
-
-    '''
     # On TPU, the tie weights in our model have been disconnected, so we need to restore the ties.    
     if accelerator.distributed_type == DistributedType.TPU:
         model.tie_weights()
@@ -580,6 +578,7 @@ def main():
 
 
         # Save checkpoint per epoch
+        '''
         if epoch < args.num_train_epochs - 1:
             accelerator.wait_for_everyone()
             unwrapped_model = accelerator.unwrap_model(model)
@@ -594,6 +593,7 @@ def main():
                         blocking=False,
                         auto_lfs_prune=True,
                     )
+        '''
             
     # Save final checkpoint
     if args.output_dir is not None:

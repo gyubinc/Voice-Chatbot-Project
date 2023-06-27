@@ -1,0 +1,1 @@
+python inference.py --model_name_or_path 'output/final_model' --prompt_text "오늘 저녁메뉴 추천좀"
