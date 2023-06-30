@@ -1,7 +1,21 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+from PIL import Image
+from time import sleep
+
+import streamlit as st
 from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
+
+# 페이지 기본 설정
+st.set_page_config(
+    page_icon="🐶",
+    page_title="침착맨연KU소 스트림릿",
+    layout="wide",
+)
+
 
 stt_button = Button(label="Speak", width=100)
 
