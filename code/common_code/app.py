@@ -4,6 +4,8 @@
 # 1-1. TTS -> TTS -> utils구조인데, 두번째 TTS가 app.py와 같은 위치에 오도록 설정
 # 2. git clone https://github.com/sce-tts/g2pK.git
 
+# 문제1) infer에서 version이 안맞아서 뜬 오류가 그대로 떠서 버전을 새로 설정해야 합니다.
+# 문제2) st.audio로 tts 출력이 가능한데 모델 output은 wav라 array로 한번 바꿔야 할 것 같습니다.
 
 import streamlit as st
 import pandas as pd
