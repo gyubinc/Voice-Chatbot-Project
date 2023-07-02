@@ -1,1 +1,1 @@
-python inference.py --model_name_or_path 'output/final_model' --prompt_text "오늘 저녁메뉴 추천좀"
+python inference.py --model_name_or_path 'output/final_model' --prompt_text "저 오늘 기분이 안좋아요"
