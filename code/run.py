@@ -44,37 +44,47 @@ def load_synthesizer():
 
 # 챗봇 모델 불러오기 함수
 @st.cache_resource
-def load_chatbot_model():
-    #model_path = 'chatbot_code/output/final_model'
-    model_path = 'kakaobrain/kogpt'
-    tokenizer = AutoTokenizer.from_pretrained(
-  'kakaobrain/kogpt', revision='KoGPT6B-ryan1.5b-float16',  # or float32 version: revision=KoGPT6B-ryan1.5b
-  bos_token='[BOS]', eos_token='[EOS]', unk_token='[UNK]', pad_token='[PAD]', mask_token='[MASK]'
-)
-    model = AutoModelForCausalLM.from_pretrained(
-  'kakaobrain/kogpt', revision='KoGPT6B-ryan1.5b-float16',  # or float32 version: revision=KoGPT6B-ryan1.5b
-  pad_token_id=tokenizer.eos_token_id,
-  torch_dtype='auto', low_cpu_mem_usage=True
-)
-    return tokenizer, model
+def load_chatbot_model(pre=True):
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    if pre:
+        #model_path = 'chatbot_code/output/final_model'
+        model_path = 'kakaobrain/kogpt',
+        tokenizer = AutoTokenizer.from_pretrained(
+    'kakaobrain/kogpt', revision='KoGPT6B-ryan1.5b-float16',  # or float32 version: revision=KoGPT6B-ryan1.5b
+    bos_token='[BOS]', eos_token='[EOS]', unk_token='[UNK]', pad_token='[PAD]', mask_token='[MASK]'
+    )
+        model = AutoModelForCausalLM.from_pretrained(
+    'kakaobrain/kogpt', revision='KoGPT6B-ryan1.5b-float16',  # or float32 version: revision=KoGPT6B-ryan1.5b
+    pad_token_id=tokenizer.eos_token_id,
+    torch_dtype='auto', low_cpu_mem_usage=True
+    ).to(device)
+        return tokenizer, model
+    
+    if not pre:
+        model_path = 'chatbot_code/output/last/final_model'
+        tokenizer = AutoTokenizer.from_pretrained(model_path)
+        model = AutoModelForCausalLM.from_pretrained(model_path).to(device)
+        return tokenizer, model
+
+
 
 synthesizer = load_synthesizer()
 symbols = synthesizer.tts_config.characters.characters
 Chatbot_Data, emb = load_chat_data()
-tokenizer, model = load_chatbot_model()
+tokenizer, model = load_chatbot_model(pre = False)
 
 #페이지 구성
 st.title('쿠빅 침착맨 초대석')
 st.subheader("침착맨연KU소")
 st.image("ku_chim.jpg", width = 330)
 st.subheader("반갑습니다 여러분의 귀염둥이 침착맨입니다.")
-st.subheader("실시간 침착맨 챗봇")
+st.subheader("실시간 침착맨 음성봇")
 
 
 #대화 실행
 text = 0
 with st.form(key="입력 form"):
-    text = st.text_input("실시간 침착맨 챗봇")
+    text = st.text_input("실시간 침착맨 음성봇")
     submitted = st.form_submit_button("대화 보내기")
     if submitted:
         
@@ -118,9 +128,9 @@ with st.form(key="form"):
             question,answer3 = qachatbot(Chatbot_Data, emb, answer2)
             answers = answers + answer1+ answer2+ answer3
             #prompt = f'{text}라는 질문이 왔습니다. 이때 대답은?'
-            prompt = f'{text}라는 고민이 라디오 사연으로 왔을 때 가벼운 말투를 사용해서 답장해줘'
+            prompt = f'{text}라는 고민이 있습니다. 해결해주세요.'
             
-            answers = answers + '그리고 있잖아요.' + answer(model, tokenizer,synthesizer, prompt)
+            answers = answers + "또, " + answer(model, tokenizer,prompt)
             st.write(answers)
             wav = synthesizer.tts(answers, None, None)
             IPython.display.display(IPython.display.Audio(wav, rate=22050))
