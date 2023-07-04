@@ -145,7 +145,7 @@ def parse_args():
     )
     parser.add_argument("--weight_decay", type=float, default=0.0, help="Weight decay to use.")
     parser.add_argument(
-        "--num_train_epochs", type=int, default=30, help="Total number of training epochs to perform."
+        "--num_train_epochs", type=int, default=15, help="Total number of training epochs to perform."
     )
     parser.add_argument(
         "--max_train_steps",
@@ -481,7 +481,7 @@ def main():
 
     for i, m in enumerate(model.transformer.h):
         # Only un-freeze the last n transformer blocks
-        if i >= 20:
+        if i >= 15:
             for parameter in m.parameters():
                 parameter.requires_grad = True
 

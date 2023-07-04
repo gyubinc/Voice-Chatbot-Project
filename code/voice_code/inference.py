@@ -191,10 +191,10 @@ def synthesize(text):
     return wavs
 
 synthesizer = Synthesizer(
-    '../../content/drive/My Drive/Colab Notebooks/data/glowtts-v2/glowtts-v2-June-25-2023_02+36PM-3aa165ae/checkpoint_80000.pth.tar',
+    "../../content/drive/My Drive/Colab Notebooks/data/glowtts-v2/glowtts-v2-June-25-2023_02+36PM-3aa165ae/checkpoint_113000.pth.tar",
     "../../content/drive/My Drive/Colab Notebooks/data/glowtts-v2/glowtts-v2-June-25-2023_02+36PM-3aa165ae/config.json",
     None,
-    '../../content/drive/My Drive/Colab Notebooks/data/hifigan-v2/hifigan-v2-June-26-2023_07+23AM-3aa165ae/checkpoint_420000.pth.tar',
+    "../../content/drive/My Drive/Colab Notebooks/data/hifigan-v2/hifigan-v2-June-26-2023_07+23AM-3aa165ae/checkpoint_465000.pth.tar",
     "../../content/drive/My Drive/Colab Notebooks/data/hifigan-v2/hifigan-v2-June-26-2023_07+23AM-3aa165ae/config.json",
     None,
     None,
@@ -206,11 +206,13 @@ symbols = synthesizer.tts_config.characters.characters
 
 
 
+
 if __name__ == "__main__":
     texts = """
-    안녕하세요 자만추 팀원 여러분 저는 침착맨 목소리의 최규빈입니다 반갑습니다 아쉽게도 제가 오늘 참석이 어려울 것 같아 이렇게 음성으로 죄송한 마음을 전합니다
+    안녕하세요 여러분 반갑습니다, 저는 최규빈입니다, 이번 프로젝트 잘 부탁드립니다, 감사합니다 떙큐.
     """
-    '''
+    
+    
     for text in normalize_multiline_text(texts):
         print('hi')
         wav = synthesizer.tts(text, None, None)
@@ -219,5 +221,5 @@ if __name__ == "__main__":
         wav_norm = np.int16(wav/np.max(np.abs(wav)) * 32767)
 
         # Save as a WAV file
-        write("목소리.wav", 22050, wav_norm)
-    '''
+        write("자기소개.wav", 22050, wav_norm)
+    

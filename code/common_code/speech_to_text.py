@@ -73,8 +73,9 @@ result = streamlit_bokeh_events(
     override_height=75,
     debounce_time=0)
 
+
 if result:
     if "GET_TEXT" in result:
         st.write(result.get("GET_TEXT"))
         input_text = result.get("GET_TEXT")
-print(input_text)
+        #print(input_text)
