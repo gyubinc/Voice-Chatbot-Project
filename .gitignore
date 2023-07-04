@@ -2,5 +2,11 @@
 *.bin
 *.pyc
 *.zip
+*.csv
+*.jpg
+*.out
 
+events.out*
 
+code/chatbot_code/output/
+code/voice_code/tts-env/
