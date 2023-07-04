@@ -14,3 +14,11 @@ ffmpeg-python
 pydub
 simpleaudio
 streamlit
+torch
+ast
+transformers
+scipy
+IPython
+datasets
+accelerate
+huggingface_hub
