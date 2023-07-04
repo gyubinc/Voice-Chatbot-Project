@@ -1,21 +1,14 @@
 # streamlit
 from TTS.utils.synthesizer import Synthesizer
 import streamlit as st
-import librosa
-from pydub import AudioSegment
 import IPython
 import numpy as np
-import io
-from voice_code.inference import normalize_multiline_text
 from io import BytesIO
 from scipy.io.wavfile import write
 from chatbot_code.inference import answer
 from chatbot_code.bot import qachatbot
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import streamlit as st
-from bokeh.models.widgets import Button
-from bokeh.models import CustomJS
-from streamlit_bokeh_events import streamlit_bokeh_events
 import ast
 import pandas as pd
 import torch

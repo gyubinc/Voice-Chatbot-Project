@@ -1,6 +1,4 @@
 import json
-
-import pydub
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 
