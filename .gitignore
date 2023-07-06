@@ -3,7 +3,7 @@
 *.pyc
 *.zip
 *.csv
-*.jpg
+#*.jpg
 *.out
 *.txt
 
