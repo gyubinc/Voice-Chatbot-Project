@@ -13,8 +13,16 @@ Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Predi
 16기 최규빈
   
 17기 임청수 홍여빈 황민아
-  
-## 코드
+
+## 파이프라인
+
+1. 질문 text 입력
+2. Chatbot으로 답변 생성
+3. Text to Speech를 통해 text를 voice로 변환
+
+![pipeline](https://github.com/gyubinc/Voice-Chatbot-Project/assets/122433920/07d14474-c7df-427f-938b-c4847c5f68f8)
+
+## 실행
 
 ```bash
 $ pip install -r requirements.txt
