@@ -4,7 +4,7 @@
   
 ## 주제
 
-Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Prediction Fine-tuning을 통한 침착맨 음성봇 제작 프로젝트
+음성모델 Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Prediction Fine-tuning을 통한 침착맨 음성봇 제작 프로젝트
   
 ## Team
 
