@@ -9,5 +9,7 @@
 
 events.out*
 
+TTS
+
 code/chatbot_code/output/
 code/voice_code/tts-env/

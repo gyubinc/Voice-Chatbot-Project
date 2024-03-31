@@ -5,7 +5,7 @@ from transformers import GPT2LMHeadModel, AutoModel
 import time
 import argparse
 # streamlit
-from TTS.utils.synthesizer import Synthesizer
+# from TTS.utils.synthesizer import Synthesizer
 import streamlit as st
 import librosa
 from pydub import AudioSegment
@@ -43,8 +43,9 @@ def parse_args():
     return args
 
 
-words = ['침디', '침착맨', '안녕하세요', '안녕', '\n']
-def remove_text_after_last_period(text, words):
+
+def remove_text_after_last_period(text):
+    words = ['침디', '침착맨', '안녕하세요', '안녕', '\n']
     pattern = '|'.join(words)
     text = re.sub(pattern, '', text)
     return last_remove(text)
@@ -108,7 +109,7 @@ def answer(model, tokenizer, text):
     else:
         result_text = generated_text  # if not, just return the generated text
     result_text = result_text.strip()
-    result_text = remove_text_after_last_period(result_text, words)
+    result_text = remove_text_after_last_period(result_text)
     
     return result_text   # Return the result text, removing leading/trailing whitespace
 

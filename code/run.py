@@ -71,8 +71,29 @@ st.title('쿠빅 침착맨 초대석')
 st.subheader("침착맨연KU소")
 st.image("ku_chim.jpg", width = 330)
 st.subheader("반갑습니다 여러분의 귀염둥이 침착맨입니다.")
-st.subheader("실시간 침착맨 음성봇")
+st.subheader("침 Voice")
+st.write("당신의 문장을 침착맨이 대신 읽어줘요.")
 
+with st.form(key="chim form"):
+    text = st.text_input("침 Voice")
+    submitted = st.form_submit_button("문장 보내기")
+    if submitted:
+        
+        with st.spinner("침착맨이 할 말을 생성중입니다."):
+
+            wav = synthesizer.tts(text, None, None)
+            IPython.display.display(IPython.display.Audio(wav, rate=22050))
+            wav_norm = np.int16(wav/np.max(np.abs(wav)) * 32767)
+            # wav_norm을 wav 바이트로 변환하고 BytesIO 객체를 생성합니다.
+            virtual_file = BytesIO()
+            write(virtual_file, 22050, wav_norm)
+
+            # virtual_file을 처음부터 다시 읽습니다.
+            virtual_file.seek(0)
+            st.audio(virtual_file.read(), format = 'audio/wav')
+
+st.subheader("실시간 침착맨 음성봇")
+st.write("침착맨과 대화해보세요.")
 
 #대화 실행
 text = 0
@@ -109,7 +130,8 @@ with st.form(key="입력 form"):
             virtual_file.seek(0)
             st.audio(virtual_file.read(), format = 'audio/wav')
     
-st.subheader("침착맨 라디오")
+st.subheader("침착맨 라디오(Demo)")
+st.write("사연을 보내주시면 침착맨이 당신의 사연에 답해줄 거에요.")
 with st.form(key="form"):
     text = st.text_input("침착맨 라디오")
     submitted = st.form_submit_button("사연 보내기")
@@ -119,7 +141,9 @@ with st.form(key="form"):
             question,answer1 = qachatbot(Chatbot_Data, emb, answers)
             question,answer2 = qachatbot(Chatbot_Data, emb, answer1)
             question,answer3 = qachatbot(Chatbot_Data, emb, answer2)
-            answers = answers + answer1+ answer2+ answer3
+            answers = list(set([answers, answer1, answer2, answer3]))
+            
+            answers = ' '.join(answers)
             #prompt = f'{text}라는 질문이 왔습니다. 이때 대답은?'
             prompt = f'{text}라는 고민이 있습니다. 해결해주세요.'
             
@@ -135,7 +159,8 @@ with st.form(key="form"):
             # virtual_file을 처음부터 다시 읽습니다.
             virtual_file.seek(0)
             st.audio(virtual_file.read(), format = 'audio/wav')
-    
+
+st.write("더 자세한 코드가 궁금하다면 -> [침착맨연KU소](https://github.com/gyubinc/Voice-Chatbot-Project/tree/main)")
 
 #실행
 #streamlit run common_code/run.py --server.port 30007
