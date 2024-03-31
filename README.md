@@ -4,7 +4,7 @@
   
 ## 주제
 
-Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Prediction Fine-tuning을 통한 침착맨 음성봇 제작 프로젝트
+음성모델 Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Prediction Fine-tuning을 통한 침착맨 음성봇 제작 프로젝트
   
 ## Team
 
@@ -13,8 +13,16 @@ Glow-tts와 HiFi-GAN을 통한 침착맨 음성학습 및 kogpt Next Token Predi
 16기 최규빈
   
 17기 임청수 홍여빈 황민아
-  
-## 코드
+
+## 파이프라인
+
+1. 질문 text 입력
+2. Chatbot으로 답변 생성
+3. Text to Speech를 통해 text를 voice로 변환
+
+![pipeline](https://github.com/gyubinc/Voice-Chatbot-Project/assets/122433920/07d14474-c7df-427f-938b-c4847c5f68f8)
+
+## 실행
 
 ```bash
 $ pip install -r requirements.txt
@@ -24,14 +32,9 @@ $ streamlit run run.py --server.port [server port]
   
 ## 개발환경
 
-<img src="https://img.shields.io/badge/Audacity-0000cc?style=for-the-badge&logo=Audacity&logoColor=white">
-<img src="https://img.shields.io/badge/Google Colab-F9AB00?style=for-the-badge&logo=Google Colab&logoColor=white">
-<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white">
+<img src="https://img.shields.io/badge/Audacity-0000cc?style=for-the-badge&logo=Audacity&logoColor=white"><img src="https://img.shields.io/badge/Google Colab-F9AB00?style=for-the-badge&logo=Google Colab&logoColor=white"><img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white">
 
-<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white">
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
-<img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white">
-<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white">
+<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"><img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=Jupyter&logoColor=white"><img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white">
 
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
 
